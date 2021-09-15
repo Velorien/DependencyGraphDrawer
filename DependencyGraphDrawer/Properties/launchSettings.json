@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DependencyGraphDrawer": {
+      "commandName": "Project",
+      "commandLineArgs": "-s C:\\Code\\sharpslide-presentation-processor\\Sharpslide.sln --includeNugetPackages"
+    }
+  }
+}
