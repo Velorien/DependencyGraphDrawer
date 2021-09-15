@@ -3,6 +3,14 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <Version>0.9.0</Version>
+    <Authors>Velorien</Authors>
+    <Description>A tool to generate PlantUML diagrams depicting csproj dependencies in a solution</Description>
+    <PackAsTool>true</PackAsTool>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/velorien/DependencyGraphDrawer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/velorien/DependencyGraphDrawer</RepositoryUrl>
+    <ToolCommandName>dotnet-dg</ToolCommandName>
   </PropertyGroup>
 
   <ItemGroup>
