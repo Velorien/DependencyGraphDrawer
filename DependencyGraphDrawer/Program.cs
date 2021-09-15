@@ -1,12 +1,7 @@
-﻿using Microsoft.Build.Construction;
-using System.Collections.Generic;
-using System.CommandLine;
+﻿using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
 
 namespace DependencyGraphDrawer
 {

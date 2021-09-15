@@ -1,7 +1,7 @@
 # Dependency Graph Drawer
 _aka `dotnet dg`_
 
-![Dependency Graph Drawer nuget package](https://img.shields.io/nuget/v/DependencyGraphDrawer)
+[![Dependency Graph Drawer nuget package](https://img.shields.io/nuget/v/DependencyGraphDrawer)](https://www.nuget.org/packages/DependencyGraphDrawer)
 
 This is the home of Dependency Graph Drawer, a global dotnet tool to visualize the dependencies in your C# projects.
 

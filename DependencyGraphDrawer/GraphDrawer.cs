@@ -1,4 +1,5 @@
 ﻿using Microsoft.Build.Construction;
+using Microsoft.Build.Exceptions;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,13 +12,43 @@ namespace DependencyGraphDrawer
     {
         public static void DrawDiagram(GraphOptions options)
         {
-            var solution = SolutionFile.Parse(options.SolutionFile.FullName);
+            if (options.SolutionFile is not null && !options.SolutionFile.Exists)
+            {
+                System.Console.WriteLine("The specified file does not exist");
+                return;
+            }
+
+            if (options.SolutionFile is null)
+            {
+                var slns = Directory.EnumerateFiles(Directory.GetCurrentDirectory(), "*.sln");
+                if (slns.Any())
+                {
+                    options.SolutionFile = new FileInfo(slns.First());
+                }
+                else
+                {
+                    System.Console.WriteLine("Cannot find a solution file");
+                    return;
+                }
+            }
+
+            SolutionFile solution = null;
+            try
+            {
+                solution = SolutionFile.Parse(options.SolutionFile.FullName);
+            }
+            catch (InvalidProjectFileException)
+            {
+                System.Console.WriteLine("The file provided is not a solution file.");
+                return;
+            }
+
             var sb = new StringBuilder();
             string nugetColor = "#ecf0f1";
             string projectColor = "#3498db";
             if (!options.IncludeNugetPackages) projectColor = nugetColor;
 
-            sb.AppendLine($"@startuml Dependency graph");
+            sb.AppendLine("@startuml Dependency graph");
             sb.AppendLine();
             sb.AppendLine("!theme plain");
             sb.AppendLine("skinparam ComponentStyle rectangle");
