@@ -57,8 +57,15 @@ namespace DependencyGraphDrawer
 
             var projects = solution.ProjectsInOrder.Where(x =>
             {
-                var attributes = File.GetAttributes(x.AbsolutePath);
-                return !attributes.HasFlag(FileAttributes.Directory);
+                try
+                {
+                    var attributes = File.GetAttributes(x.AbsolutePath);
+                    return !attributes.HasFlag(FileAttributes.Directory);
+                }
+                catch (IOException)
+                {
+                    return false;
+                }
             });
 
             sb.AppendLine("' Projects");
