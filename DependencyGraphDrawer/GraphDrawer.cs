@@ -57,6 +57,13 @@ namespace DependencyGraphDrawer
 
             var projects = solution.ProjectsInOrder.Where(x =>
             {
+                if (x.ProjectType is SolutionProjectType.SolutionFolder
+                                  or SolutionProjectType.EtpSubProject
+                                  or SolutionProjectType.WebDeploymentProject)
+                {
+                    return false;
+                }
+
                 try
                 {
                     var attributes = File.GetAttributes(x.AbsolutePath);
