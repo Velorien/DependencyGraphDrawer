@@ -23,7 +23,7 @@ namespace DependencyGraphDrawer
                 var slns = Directory.EnumerateFiles(Directory.GetCurrentDirectory(), "*.sln");
                 if (slns.Any())
                 {
-                    options.SolutionFile = new FileInfo(slns.First());
+                    options = options with { SolutionFile = new FileInfo(slns.First()) };
                 }
                 else
                 {
@@ -62,8 +62,9 @@ namespace DependencyGraphDrawer
                     var attributes = File.GetAttributes(x.AbsolutePath);
                     return !attributes.HasFlag(FileAttributes.Directory);
                 }
-                catch (IOException)
+                catch (FileNotFoundException)
                 {
+                    System.Console.WriteLine("File not found: " + x.AbsolutePath);
                     return false;
                 }
             });
