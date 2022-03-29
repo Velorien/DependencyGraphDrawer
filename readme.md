@@ -9,7 +9,7 @@ This is the home of Dependency Graph Drawer, a global dotnet tool to visualize t
 
 Run the following command: `dotnet tool install -g DependencyGraphDrawer`
 
-Requires .NET 5.
+Requires .NET 6.
 
 ## Usage
 
