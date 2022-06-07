@@ -119,7 +119,7 @@ namespace DependencyGraphDrawer
                 foreach (XmlNode dependency in csproj.GetElementsByTagName("ProjectReference"))
                 {
                     var projectName = dependency.Attributes["Include"].Value.Split("\\")[^1].Replace(".csproj", string.Empty);
-                    sb.AppendLine($"{projectName} --> {project.ProjectName}");
+                    sb.AppendLine($"{project.ProjectName} --> {projectName}");
                 }
 
                 if (options.IncludeNugetPackages)
@@ -129,7 +129,7 @@ namespace DependencyGraphDrawer
                         var name = dependency.Attributes["Include"].Value;
                         var version = dependency.Attributes["Version"]?.Value;
                         if (version is null) version = dependency.Value;
-                        sb.AppendLine($"{GetNugetId(name, version)} --> {project.ProjectName}");
+                        sb.AppendLine($"{project.ProjectName} --> {GetNugetId(name, version)}");
                     }
                 }
             }
